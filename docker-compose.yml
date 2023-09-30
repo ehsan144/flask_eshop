@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+
+  flask:
+    depends_on:
+      - database
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+    restart: unless-stopped
+
+  database:
+    image: postgres:15.4-alpine3.18
+    ports:
+      - "5432:5432"
+    volumes:
+      - eshop_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: eshop
+      POSTGRES_USER: eshop
+      POSTGRES_PASSWORD: 123@456
+    restart: unless-stopped
+
+volumes:
+  eshop_data:
