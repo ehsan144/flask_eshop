@@ -1,19 +1,19 @@
-from os import getenv as env
+from os import environ
 from dotenv import load_dotenv
-
 from flask import Flask
 
-from Catalog import CatalogResource
-from Core import CoreResource
-from .config import db, api
+from app.db import db
+from app.api import api
 
-load_dotenv()
+from app.Catalog import CatalogResource
+from app.Core import CoreResource
 
 app = Flask(__name__)
 
 # Configurations
-app.config['SQLALCHEMY_DATABASE_URI'] = env("POSTGRESQL_URI")
-app.config["SECRET_KEY"] = env("SECRET_KEY")
+
+load_dotenv()
+app.config.from_object(environ.get('APP_SETTINGS'))
 
 # add Resource
 
