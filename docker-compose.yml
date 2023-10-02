@@ -21,7 +21,7 @@ services:
     environment:
       POSTGRES_DB: eshop
       POSTGRES_USER: eshop
-      POSTGRES_PASSWORD: 123@456
+      POSTGRES_PASSWORD: 123456
     restart: unless-stopped
 
 volumes:
