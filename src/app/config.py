@@ -10,15 +10,10 @@ class Config(object):
     SECRET_KEY = env("SECRET_KEY")
     DEBUG = False
     TESTING = False
-    POSTGRES_USER = "eshop"
-    POSTGRES_PASSWORD = "123456"
-    POSTGRES_DB = "eshop"
-    POSTGRES_HOST = "db"
 
 
 class ProductionConfig(Config):
-    DEBUG = False
-    TESTING = False
+    SQLALCHEMY_DATABASE_URI = env("PRO_DATABASE_URL", 'sqlite:///:memory:')
 
 
 class DevelopmentConfig(Config):
@@ -26,5 +21,5 @@ class DevelopmentConfig(Config):
 
 
 class TestingConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
+    SQLALCHEMY_DATABASE_URI = env("TEST_DATABASE_URL", 'sqlite:///:memory:')
     TESTING = True
