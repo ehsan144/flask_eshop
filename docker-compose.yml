@@ -5,7 +5,7 @@ services:
     depends_on:
       - database
     build:
-      context: .
+      context: ./src
     ports:
       - "8000:8000"
     volumes:
@@ -23,6 +23,6 @@ services:
       POSTGRES_USER: eshop
       POSTGRES_PASSWORD: 123456
     restart: unless-stopped
-    
+
 volumes:
   eshop_data:
